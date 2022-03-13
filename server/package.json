@@ -1,0 +1,9 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend para a aplicação React Agenda",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
