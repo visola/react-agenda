@@ -1,26 +1,32 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const fs = require('fs');
-const bodyParser = require('body-parser');
+const uuidv4 = require('uuid').v4;
 
 const app = express();
 app.use(bodyParser.json());
 
 const port = 4000;
 
-const contacts = [];
+const contactsAsString = fs.existsSync('data.json') ? fs.readFileSync('data.json').toString() : '[]';
+const contacts = JSON.parse(contactsAsString);
+
+const randomDelay = () => 2000 * Math.random() + 500;
 
 app.get('/api/contacts', (req, res) => {
-  setTimeout(() => res.json(contacts), 2000 * Math.random() + 500);
+  setTimeout(() => res.json(contacts), randomDelay());
 });
 
 app.post('/api/contacts', (req, res) => {
-  contacts.push({
-    ...req.body,
-    id: Date.now(),
-  });
-
-  fs.writeFileSync('data.json', JSON.stringify(contacts));
-  res.json(contacts);
+  setTimeout(() => {
+    contacts.push({
+      ...req.body,
+      id: uuidv4(),
+    });
+  
+    fs.writeFileSync('data.json', JSON.stringify(contacts));
+    res.json(contacts);
+  }, randomDelay());
 });
 
 app.listen(port, () => {

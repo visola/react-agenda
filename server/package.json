@@ -4,6 +4,7 @@
   "description": "Backend para a aplicação React Agenda",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "uuid": "^8.3.2"
   }
 }

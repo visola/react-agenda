@@ -1,3 +1,10 @@
+@import 'bootstrap/dist/css/bootstrap.css';
+
+:root {
+  --bs-blue: #81B1DD;
+  --highligh-blue: #94CBFF;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +12,69 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 10vh 10vw;
+}
+
+.btn {
+  min-width: 100px;
+}
+
+.btn-primary {
+  background-color: var(--bs-blue);
+  border-color: var(--bs-blue);
+}
+
+.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+  background-color: var(--highligh-blue);
+  border-color: var(--highligh-blue);
+}
+
+.btn-primary:focus {
+  filter: brightness(1.1);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border-color: var(--bs-blue);
+  color: var(--bs-blue);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.form-inline {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 24px;
+}
+
+.form-inline .form-control {
+  display: inline-block;
+  flex-grow: 1;
+}
+
+.form-inline label {
+  margin-right: 12px;
+}
+
+.input-group {
+  margin-bottom: 24px;
+}
+
+.loader {
+  animation: spin 2s linear infinite;
+  border: 5px solid rgba(255, 237, 204, 0.2);
+  border-top: 5px solid white;
+  border-radius: 50%;
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
