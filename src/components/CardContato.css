@@ -1,0 +1,30 @@
+.card-contato {
+  border-radius: 20px;
+  border: 3px solid var(--bs-blue);
+  color: var(--dark-grey);
+  cursor: pointer;
+  margin-bottom: 12px;
+  min-width: 48%;
+  padding: 12px 24px;
+  transition: all 0.2s;
+}
+
+.card-contato:hover {
+  background: #efefef;
+  border-color: var(--highligh-blue);
+}
+
+.card-contato p {
+  font-weight: bold;
+  margin: 0px;
+  margin-bottom: 12px;
+}
+
+.card-contato p:last-of-type {
+  margin-bottom: 0;
+}
+
+.card-contato svg {
+  color: var(--bs-blue);
+  margin-right: 12px;
+}
