@@ -5,13 +5,13 @@ import { faCirclePlus, faUser } from '@fortawesome/free-solid-svg-icons';
 import ModalEditarContato from './ModalEditarContato';
 
 function AddContatoButton({ onCriar = () => {} }) {
-  const [ editandoContato, setEditandoContato ] = useState(false);
+  const [ criandoContato, setCriandoContato ] = useState(false);
 
-  const handleCriarNovo = () => setEditandoContato(true);
-  const handleFechar = () => setEditandoContato(false);
+  const handleCriarNovo = () => setCriandoContato(true);
+  const handleFechar = () => setCriandoContato(false);
 
   const handleSalvar = (contato) => {
-    setEditandoContato(false);
+    setCriandoContato(false);
     onCriar(contato);
   };
 
@@ -21,7 +21,7 @@ function AddContatoButton({ onCriar = () => {} }) {
       &nbsp;
       <FontAwesomeIcon icon={faUser} />
     </button>
-    <ModalEditarContato onFechar={handleFechar} onSalvar={handleSalvar} visivel={editandoContato} />
+    <ModalEditarContato onFechar={handleFechar} onSalvar={handleSalvar} visivel={criandoContato} />
   </Fragment>;
 }
 

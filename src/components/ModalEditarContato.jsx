@@ -17,11 +17,8 @@ function ModalEditarContato({
   const [ telefone, setTelefone ] = useState(contato.telefone);
   const [ salvando, setSalvando ] = useState(false);
 
-  if (!visivel) {
-    return null;
-  }
-
-  const handleSalvar = () => {
+  const handleSalvar = (e) => {
+    e.preventDefault();
     if (salvando) {
       return;
     }
@@ -29,68 +26,74 @@ function ModalEditarContato({
     setSalvando(true);
     const paraSalvar = {
       ...contato,
-      name: nome,
+      nome,
       email,
       telefone,
     };
+
     salvarContato(paraSalvar).then((contatos) => {
+      setEmail('');
+      setNome('');
+      setTelefone('');
       setSalvando(false);
       onSalvar(contatos);
     });
   };
 
-  return <div className="modal fade show" tabIndex="-1" style={{ display: 'block' }}>
-    <div className="modal-dialog modal-dialog-centered">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h5 className="modal-title">{contato.id ? 'Editar' : 'Criar'} Contato</h5>
-          <button className="btn-close" onClick={onFechar}></button>
-        </div>
-        <div className="modal-body">
-          <div className="form-inline">
-            <label htmlFor="nome">Nome</label>
-            <input
-              className="form-control"
-              id="nome"
-              placeholder="João da Silva"
-              type="text"
-              onChange={(e) => setNome(e.target.value)}
-              value={nome}
-            />
+  return <div className="modal fade show" tabIndex="-1" style={{ display: visivel ? 'block' : 'none' }}>
+    <form onSubmit={handleSalvar}>
+      <div className="modal-dialog modal-dialog-centered">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">{contato.id ? 'Editar' : 'Criar'} Contato</h5>
+            <button className="btn-close" onClick={onFechar} type="button"></button>
           </div>
-          <div className="input-group">
-            <span className="input-group-text" id="basic-addon1"><FontAwesomeIcon icon={faPhone} /></span>
-            <input
-              type="text"
-              className="form-control"
-              id="nome"
-              placeholder="(11) 54321-1234"
-              value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
-            />
+          <div className="modal-body">
+            <div className="form-inline">
+              <label htmlFor="nome">Nome</label>
+              <input
+                className="form-control"
+                id="nome"
+                placeholder="João da Silva"
+                type="text"
+                onChange={(e) => setNome(e.target.value)}
+                value={nome}
+              />
+            </div>
+            <div className="input-group">
+              <span className="input-group-text" id="basic-addon1"><FontAwesomeIcon icon={faPhone} /></span>
+              <input
+                type="text"
+                className="form-control"
+                id="nome"
+                placeholder="(11) 54321-1234"
+                value={telefone}
+                onChange={(e) => setTelefone(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <span className="input-group-text" id="basic-addon1"><FontAwesomeIcon icon={faEnvelope} /></span>
+              <input
+                type="text"
+                className="form-control"
+                id="nome"
+                placeholder="algum@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
           </div>
-          <div className="input-group">
-            <span className="input-group-text" id="basic-addon1"><FontAwesomeIcon icon={faEnvelope} /></span>
-            <input
-              type="text"
-              className="form-control"
-              id="nome"
-              placeholder="algum@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+          <div className="modal-footer">
+            <button className="btn btn-primary" type="submit">
+              { salvando ? <Loader type='white' /> : 'Salvar' }
+            </button>
+            <button className="btn btn-secondary" onClick={onFechar} type="button">
+              Cancelar
+            </button>
           </div>
-        </div>
-        <div className="modal-footer">
-          <button className="btn btn-primary" onClick={handleSalvar}>
-            { salvando ? <Loader type='white' /> : 'Salvar' }
-          </button>
-          <button className="btn btn-secondary" onClick={onFechar}>
-            Cancelar
-          </button>
         </div>
       </div>
-    </div>
+    </form>
   </div>;
 };
 
