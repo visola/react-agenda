@@ -1,9 +1,11 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
 :root {
-  --bs-blue: #81B1DD;
+  --blue: #81B1DD;
   --dark-grey: #575A5C;
   --highligh-blue: #94CBFF;
+
+  --border-radius: 15px;
 }
 
 body {
@@ -21,8 +23,8 @@ body {
 }
 
 .btn-primary {
-  background-color: var(--bs-blue);
-  border-color: var(--bs-blue);
+  background-color: var(--blue);
+  border-color: var(--blue);
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
@@ -36,8 +38,8 @@ body {
 
 .btn-secondary {
   background-color: transparent;
-  border-color: var(--bs-blue);
-  color: var(--bs-blue);
+  border-color: var(--blue);
+  color: var(--blue);
 }
 
 code {
@@ -65,17 +67,7 @@ code {
   margin-bottom: 24px;
 }
 
-.loader {
-  animation: spin 2s linear infinite;
-  border: 5px solid rgba(255, 237, 204, 0.2);
-  border-top: 5px solid white;
-  border-radius: 50%;
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.top-bar {
+  display: flex;
+  justify-content: space-between;
 }

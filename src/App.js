@@ -5,11 +5,24 @@ import { carregar as carregarContatos } from './services/ContactsService';
 import AddContatoButton from './components/AddContatoButton';
 import ListaDeContatos from './components/ListaDeContatos.jsx';
 import Loader from './components/Loader.jsx';
+import CaixaDeBusca from './components/CaixaDeBusca';
 
 function App() {
   const [ contatos, setContatos ] = useState([]);
   const [ carregando, setCarregando ] = useState(true);
+  const [ filtrados, setFiltrados ] = useState([]);
 
+  const filtrarContatos = (filtro) => {
+    setFiltrados(contatos.filter((c) => {
+      if (!filtro || filtro === '') {
+        return true;
+      }
+
+      return c.nome.toLowerCase().includes(filtro) ||
+        c.telefone.includes(filtro) ||
+        c.email.includes(filtro);
+    }))
+  };
 
   useEffect(() => {
     carregarContatos().then((contatos) => {
@@ -18,9 +31,17 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    filtrarContatos(null);
+  }, [contatos]);
+
   const handleOnCriar = (contatos) => {
     setContatos(contatos);
   };
+
+  const handleBuscaChanged = (novaBusca) => {
+    filtrarContatos(novaBusca);
+  }
 
   if (carregando) {
     return <p>
@@ -32,8 +53,11 @@ function App() {
 
   return (
     <Fragment>
-      <AddContatoButton onCriar={handleOnCriar} />
-      <ListaDeContatos contatos={contatos} />
+      <div className="top-bar">
+        <AddContatoButton onCriar={handleOnCriar} />
+        <CaixaDeBusca onChange={handleBuscaChanged} />
+      </div>
+      <ListaDeContatos contatos={filtrados} />
     </Fragment>
   );
 }

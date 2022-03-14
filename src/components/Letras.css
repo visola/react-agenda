@@ -1,0 +1,33 @@
+.letras {
+  border-bottom: 3px solid var(--blue);
+  display: flex;
+  margin-top: 12px;
+}
+
+.letras > li {
+  background: var(--blue);
+  border: 3px solid var(--blue);
+  border-bottom: none;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  list-style: none;
+  margin: 0 5px 0 0;
+  min-width: 50px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.letras > li:hover {
+  background: var(--highligh-blue);
+}
+
+.letras > li.selected {
+  background: var(--highligh-blue);
+  border: 3px solid var(--highligh-blue);
+  border-bottom: none;
+}
