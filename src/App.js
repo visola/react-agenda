@@ -35,7 +35,7 @@ function App() {
     filtrarContatos(null);
   }, [contatos]);
 
-  const handleOnCriar = (contatos) => {
+  const handleContatoSalvo = (contatos) => {
     setContatos(contatos);
   };
 
@@ -54,10 +54,10 @@ function App() {
   return (
     <Fragment>
       <div className="top-bar">
-        <AddContatoButton onCriar={handleOnCriar} />
+        <AddContatoButton onCriar={handleContatoSalvo} />
         <CaixaDeBusca onChange={handleBuscaChanged} />
       </div>
-      <ListaDeContatos contatos={filtrados} />
+      <ListaDeContatos contatos={filtrados} onSalvo={handleContatoSalvo} />
     </Fragment>
   );
 }

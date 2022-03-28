@@ -21,7 +21,11 @@ function AddContatoButton({ onCriar = () => {} }) {
       &nbsp;
       <FontAwesomeIcon icon={faUser} />
     </button>
-    <ModalEditarContato onFechar={handleFechar} onSalvar={handleSalvar} visivel={criandoContato} />
+    <ModalEditarContato
+      onFechar={handleFechar}
+      onSalvar={handleSalvar}
+      visivel={criandoContato}
+    />
   </Fragment>;
 }
 

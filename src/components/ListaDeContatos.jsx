@@ -5,7 +5,7 @@ import Letras from './Letras';
 
 import './ListaDeContato.css';
 
-function ListaDeContatos ({ contatos }) {
+function ListaDeContatos ({ contatos, onSalvo = () => {} }) {
   const [ filtrados, setFiltrados ] = useState([]);
 
   useEffect(() => {
@@ -30,10 +30,14 @@ function ListaDeContatos ({ contatos }) {
     filtrarContatosComecandoCom(letra);
   }
 
+  const handleContatoSalvo = (contatos) => {
+    onSalvo(contatos);
+  }
+
   return <Fragment>
     <Letras contatos={contatos} onSelecaoAlterada={handleOnSelecaoAlterada} />
     <div className="lista-de-contatos">
-      { filtrados.map((c) => <CardContato key={c.id} contato={c} />) }
+      { filtrados.map((c) => <CardContato key={c.id} contato={c} onSalvo={handleContatoSalvo} />) }
     </div>
   </Fragment>;
 };

@@ -32,9 +32,11 @@ function ModalEditarContato({
     };
 
     salvarContato(paraSalvar).then((contatos) => {
-      setEmail('');
-      setNome('');
-      setTelefone('');
+      if (!contato.id) {
+        setEmail('');
+        setNome('');
+        setTelefone('');
+      }
       setSalvando(false);
       onSalvar(contatos);
     });
