@@ -33,8 +33,6 @@ app.put('/api/contacts/:id', (req, res) => {
   setTimeout(() => {
     const id = req.params.id;
     const indexOf = contacts.findIndex((c) => c.id === id);
-    console.log(`Found id: ${id} at index: ${indexOf}`);
-    console.log(contacts[indexOf]);
     contacts[indexOf] = req.body;
     fs.writeFileSync('data.json', JSON.stringify(contacts));
     res.json(contacts);
