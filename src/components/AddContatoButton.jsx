@@ -10,9 +10,9 @@ function AddContatoButton({ onCriar = () => {} }) {
   const handleCriarNovo = () => setCriandoContato(true);
   const handleFechar = () => setCriandoContato(false);
 
-  const handleSalvar = (contato) => {
+  const handleSalvar = (contatos) => {
     setCriandoContato(false);
-    onCriar(contato);
+    onCriar(contatos);
   };
 
   return <Fragment>

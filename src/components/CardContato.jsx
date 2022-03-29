@@ -29,9 +29,6 @@ function CardContato ({ contato, onSalvo = () => {} }) {
       { contato.telefone }
     </p>
     <p>
-      { contato.id }
-    </p>
-    <p>
       <FontAwesomeIcon icon={faEnvelope} />
       { contato.email }
     </p>
